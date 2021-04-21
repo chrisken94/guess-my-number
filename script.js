@@ -144,6 +144,7 @@ guess.addEventListener("keyup", function (event) {
     event.preventDefault();
     checkButton.click();
   }
+  // triggering the "again!" button with "r" key in "input guess of user"
   if (event.keyCode === 82) {
     event.preventDefault();
     againButton.click();
