@@ -1,7 +1,7 @@
 "use strict";
 
 // defining the random number
-let secretNumber = Math.trunc(Math.random() * 20) + 1;
+let secretNumber = Math.trunc(Math.random() * 30) + 1;
 // to put the random number in the html content
 let numberHtml = document.querySelector(".number");
 
@@ -25,7 +25,7 @@ let messageHtml = document.querySelector(".message"),
 againButton.disabled = true;
 
 // to define the user's score in variable in our own code (not depend on DOM) (must be outside the function, if inside the function, the value will always be the same initial value every time the function run) (IMPORTANT LESSON : recommended practice to store data in our own code not depend on the DOM)
-let scoreInCode = 20;
+let scoreInCode = 15;
 
 const checkFunc = function () {
   // define the guess html to variable and convert it to Number format
@@ -101,10 +101,10 @@ const checkFunc = function () {
 // the "again" button function
 const againFunc = function () {
   // to restore the player's score
-  scoreInCode = 20;
+  scoreInCode = 15;
   scoreHtml.textContent = scoreInCode;
   // to restore the secret number
-  secretNumber = Math.trunc(Math.random() * 20) + 1;
+  secretNumber = Math.trunc(Math.random() * 30) + 1;
   // to restore the number html back to "?"
   numberHtml.textContent = "?";
   // to restore the number html width back to 15 rem
