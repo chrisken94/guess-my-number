@@ -2,7 +2,7 @@
 
 // defining the random number
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
-// put the random number in the html content
+// to put the random number in the html content
 let numberHtml = document.querySelector(".number");
 
 // defining the "user's score" to variable
@@ -30,8 +30,6 @@ let scoreInCode = 20;
 const checkFunc = function () {
   // define the guess html to variable and convert it to Number format
   const guess = Number(document.querySelector(".guess").value);
-  // convert the "user's score to "number" type" (may use the "scoreInCode")
-  // scoreCounter = Number(scoreHtml.textContent),
 
   // when there is no guesses/input
   if (!guess) {
@@ -60,22 +58,33 @@ const checkFunc = function () {
       highScore.textContent = scoreInCode;
     }
   }
-  // when input guess is too high
-  else if (guess > secretNumber) {
-    messageHtml.textContent = "⏫Too high!";
+  // when input guess is wrong (method #1 (dry principle))
+  else if (guess !== secretNumber) {
+    messageHtml.textContent =
+      guess > secretNumber ? "⏫Too high!" : "⏬Too low!";
     scoreInCode--;
     scoreHtml.textContent = scoreInCode;
-    // to disable the "again button"
+    // to disable the "again" button
     againButton.disabled = true;
   }
-  // when input guess is too low
-  else if (guess < secretNumber) {
-    messageHtml.textContent = "⏬Too low!";
-    scoreInCode--;
-    scoreHtml.textContent = scoreInCode;
-    // to disable the "again button"
-    againButton.disabled = true;
-  }
+
+  // // when input guess is too high (method #2 (regular principle))
+  // else if (guess > secretNumber) {
+  //   messageHtml.textContent = "⏫Too high!";
+  //   scoreInCode--;
+  //   scoreHtml.textContent = scoreInCode;
+  //   // to disable the "again button"
+  //   againButton.disabled = true;
+  // }
+  // // when input guess is too low
+  // else if (guess < secretNumber) {
+  //   messageHtml.textContent = "⏬Too low!";
+  //   scoreInCode--;
+  //   scoreHtml.textContent = scoreInCode;
+  //   // to disable the "again button"
+  //   againButton.disabled = true;
+  // }
+
   // when player's score decreased to zero, telling them they lost the game and disabled the "check" button
   if (scoreInCode === 0) {
     messageHtml.textContent = "🤯 You lost the game!";
@@ -118,5 +127,29 @@ const againFunc = function () {
   // console.log(`${secretNumber} secret`);
 };
 
+// the global variable of "guess"
+let guess = document.querySelector(".guess");
+
+// number only on input guess
+const guessNumOnly = function (evt) {
+  let num = String.fromCharCode(evt.which);
+  if (!/[0-9]/.test(num)) {
+    evt.preventDefault();
+  }
+};
+
+// trigerring the "check" button with "enter" key in "input guess of user"
+guess.addEventListener("keyup", function (event) {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    checkButton.click();
+  }
+  if (event.keyCode === 82) {
+    event.preventDefault();
+    againButton.click();
+  }
+});
+
 document.querySelector(".check").addEventListener("click", checkFunc);
 document.querySelector(".again").addEventListener("click", againFunc);
+guess.addEventListener("keypress", guessNumOnly);

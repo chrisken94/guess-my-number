@@ -16,7 +16,15 @@
     </header>
     <main>
       <section class="left">
-        <input type="number" class="guess" />
+        <!-- the "oninput" is to limit the digit up to 2 digit only -->
+        <input
+          type="number"
+          min="1"
+          max="20"
+          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+          maxlength="2"
+          class="guess"
+        />
         <button class="btn check">Check!</button>
       </section>
       <section class="right">
