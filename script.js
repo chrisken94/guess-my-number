@@ -68,23 +68,6 @@ const checkFunc = function () {
     againButton.disabled = true;
   }
 
-  // // when input guess is too high (method #2 (regular principle))
-  // else if (guess > secretNumber) {
-  //   messageHtml.textContent = "⏫Too high!";
-  //   scoreInCode--;
-  //   scoreHtml.textContent = scoreInCode;
-  //   // to disable the "again button"
-  //   againButton.disabled = true;
-  // }
-  // // when input guess is too low
-  // else if (guess < secretNumber) {
-  //   messageHtml.textContent = "⏬Too low!";
-  //   scoreInCode--;
-  //   scoreHtml.textContent = scoreInCode;
-  //   // to disable the "again button"
-  //   againButton.disabled = true;
-  // }
-
   // when player's score decreased to zero, telling them they lost the game and disabled the "check" button
   if (scoreInCode === 0) {
     messageHtml.textContent = "🤯 You lost the game!";
