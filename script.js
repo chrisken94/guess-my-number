@@ -25,7 +25,7 @@ let messageHtml = document.querySelector(".message"),
 againButton.disabled = true;
 
 // to define the user's score in variable in our own code (not depend on DOM) (must be outside the function, if inside the function, the value will always be the same initial value every time the function run) (IMPORTANT LESSON : recommended practice to store data in our own code not depend on the DOM)
-let scoreInCode = 10;
+let scoreInCode = 5;
 
 const checkFunc = function () {
   // define the guess html to variable and convert it to Number format
@@ -84,7 +84,7 @@ const checkFunc = function () {
 // the "again" button function
 const againFunc = function () {
   // to restore the player's score
-  scoreInCode = 10;
+  scoreInCode = 5;
   scoreHtml.textContent = scoreInCode;
   // to restore the secret number
   secretNumber = Math.trunc(Math.random() * 30) + 1;
