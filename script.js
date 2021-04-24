@@ -113,18 +113,18 @@ const againFunc = function () {
 // the global variable of "guess"
 let guess = document.querySelector(".guess");
 
-// trigerring the "check" button with "enter" key in "input guess of user"
-guess.addEventListener("keyup", function (event) {
-  if (event.keyCode === 13) {
-    event.preventDefault();
+const triggerButton = function (evt) {
+  // triggering the "check!" button with "enter" key in "input" guess of user
+  if (evt.keyCode === 13) {
+    evt.preventDefault();
     checkButton.click();
   }
-  // triggering the "again!" button with "r" key in "input guess of user"
-  if (event.keyCode === 82) {
-    event.preventDefault();
+  // triggering the "again!" button with "r" key in "input" guess of user
+  if (evt.keyCode === 82) {
+    evt.preventDefault();
     againButton.click();
   }
-});
+};
 
 // number only on input guess
 const guessNumOnly = function (evt) {
@@ -137,3 +137,4 @@ const guessNumOnly = function (evt) {
 document.querySelector(".check").addEventListener("click", checkFunc);
 document.querySelector(".again").addEventListener("click", againFunc);
 guess.addEventListener("keypress", guessNumOnly);
+guess.addEventListener("keyup", triggerButton);
