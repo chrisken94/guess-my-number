@@ -27,6 +27,22 @@ let scoreInCode = 5;
 const displayMessage = function (message) {
   messageHtml.textContent = message;
 };
+// Function to animate the message
+const animMessage = function () {
+  if (messageHtml.className === "message") {
+    messageHtml.className += " messageAnimate";
+  } else {
+    messageHtml.className = "message";
+  }
+};
+// Function to animate the fail message
+const animMessageFail = function () {
+  if (messageHtml.classList.contains("message")) {
+    messageHtml.className = "message messageAnimateFail";
+  } else {
+    messageHtml.className = "message";
+  }
+};
 
 const checkFunc = function () {
   // define the guess html to variable and convert it to Number format
@@ -34,6 +50,7 @@ const checkFunc = function () {
 
   // when there is no guesses/input
   if (!guess) {
+    animMessage();
     displayMessage("No Number!");
     // to disable the "again button"
     againButton.disabled = true;
@@ -62,6 +79,7 @@ const checkFunc = function () {
   // when input guess is wrong (method #1 (dry principle))
   else if (guess !== secretNumber) {
     displayMessage(guess > secretNumber ? "⏫Too high!" : "⏬Too low!");
+    animMessage();
     scoreInCode--;
     scoreHtml.textContent = scoreInCode;
     // to disable the "again" button
@@ -70,6 +88,7 @@ const checkFunc = function () {
 
   // when player's score decreased to zero, telling them they lost the game and disabled the "check" button
   if (scoreInCode === 0) {
+    animMessageFail();
     displayMessage("🤯 You lost the game!");
     // to disable the button- preventing from infinite round
     checkButton.disabled = true;
@@ -96,6 +115,11 @@ const againFunc = function () {
   bodyColor.style.backgroundColor = "#222";
   // to restore the message back to "start guessing..." from "Correct Number"
   displayMessage("Start guessing...");
+  if (messageHtml.className === "message") {
+    messageHtml.className += " messageAnimate";
+  } else {
+    messageHtml.className = "message";
+  }
   // to restore the guess value back to empty string
   let guess = document.querySelector(".guess");
   guess.value = "";
@@ -134,7 +158,7 @@ const guessNumOnly = function (evt) {
   }
 };
 
-document.querySelector(".check").addEventListener("click", checkFunc);
-document.querySelector(".again").addEventListener("click", againFunc);
+checkButton.addEventListener("click", checkFunc);
+againButton.addEventListener("click", againFunc);
 guess.addEventListener("keypress", guessNumOnly);
 guess.addEventListener("keyup", triggerButton);
